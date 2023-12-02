@@ -1,0 +1,17 @@
+C:\Users\rasmu\OneDrive\Skrivebord\Repos\Fuzzer\obj\Debug\net8.0\Fuzzer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rasmu\OneDrive\Skrivebord\Repos\Fuzzer\obj\Debug\net8.0\Fuzzer.AssemblyInfoInputs.cache
+C:\Users\rasmu\OneDrive\Skrivebord\Repos\Fuzzer\obj\Debug\net8.0\Fuzzer.AssemblyInfo.cs
+C:\Users\rasmu\OneDrive\Skrivebord\Repos\Fuzzer\obj\Debug\net8.0\Fuzzer.csproj.CoreCompileInputs.cache
+C:\Users\rasmu\OneDrive\Skrivebord\Repos\Fuzzer\bin\Debug\net8.0\Fuzzer.exe
+C:\Users\rasmu\OneDrive\Skrivebord\Repos\Fuzzer\bin\Debug\net8.0\Fuzzer.deps.json
+C:\Users\rasmu\OneDrive\Skrivebord\Repos\Fuzzer\bin\Debug\net8.0\Fuzzer.runtimeconfig.json
+C:\Users\rasmu\OneDrive\Skrivebord\Repos\Fuzzer\bin\Debug\net8.0\Fuzzer.dll
+C:\Users\rasmu\OneDrive\Skrivebord\Repos\Fuzzer\bin\Debug\net8.0\Fuzzer.pdb
+C:\Users\rasmu\OneDrive\Skrivebord\Repos\Fuzzer\obj\Debug\net8.0\Fuzzer.dll
+C:\Users\rasmu\OneDrive\Skrivebord\Repos\Fuzzer\obj\Debug\net8.0\refint\Fuzzer.dll
+C:\Users\rasmu\OneDrive\Skrivebord\Repos\Fuzzer\obj\Debug\net8.0\Fuzzer.pdb
+C:\Users\rasmu\OneDrive\Skrivebord\Repos\Fuzzer\obj\Debug\net8.0\Fuzzer.genruntimeconfig.cache
+C:\Users\rasmu\OneDrive\Skrivebord\Repos\Fuzzer\obj\Debug\net8.0\ref\Fuzzer.dll
+C:\Users\rasmu\OneDrive\Skrivebord\Repos\Fuzzer\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\rasmu\OneDrive\Skrivebord\Repos\Fuzzer\obj\Debug\net8.0\Fuzzer.csproj.AssemblyReference.cache
+C:\Users\rasmu\OneDrive\Skrivebord\Repos\Fuzzer\obj\Debug\net8.0\Fuzzer.csproj.CopyComplete
