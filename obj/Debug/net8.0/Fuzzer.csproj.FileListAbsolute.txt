@@ -15,3 +15,4 @@ C:\Users\rasmu\OneDrive\Skrivebord\Repos\Fuzzer\obj\Debug\net8.0\ref\Fuzzer.dll
 C:\Users\rasmu\OneDrive\Skrivebord\Repos\Fuzzer\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\rasmu\OneDrive\Skrivebord\Repos\Fuzzer\obj\Debug\net8.0\Fuzzer.csproj.AssemblyReference.cache
 C:\Users\rasmu\OneDrive\Skrivebord\Repos\Fuzzer\obj\Debug\net8.0\Fuzzer.csproj.CopyComplete
+C:\Users\rasmu\OneDrive\Skrivebord\Repos\Fuzzer\obj\Debug\net8.0\Fuzzer.sourcelink.json

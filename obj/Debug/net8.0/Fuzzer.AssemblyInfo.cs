@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Fuzzer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ed00f7f82b261a012b06cc769d644cb4be08ab76")]
 [assembly: System.Reflection.AssemblyProductAttribute("Fuzzer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Fuzzer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

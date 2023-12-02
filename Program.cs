@@ -79,14 +79,25 @@
             string originalRequest = requestBuilder.ToString() + "\r\n";
             using (var httpClient = new HttpClient())
             {
+                // Read SQLi payloads from file
+                string sqliFilePath = "payloads/SQLi/sqliList_INSERT.txt";
+                string[] sqliPayloads = File.ReadAllLines(sqliFilePath);
+
                 foreach (string parm in parms)
                 {
-                    string val = WebUtility.UrlEncode(parm.Split('=')[1]);
-                    string modifiedRequest = string.Join("&", parms.Select(p => p.Replace("=" + parm.Split('=')[1], "=" + val + "'")));
-                    HttpResponseMessage response = await httpClient.PostAsync($"http://{host}{targetDirectory}", new StringContent(modifiedRequest));
-                    string responseBody = await response.Content.ReadAsStringAsync();
-                    if (responseBody.Contains("error in your SQL syntax"))
-                        Console.WriteLine($"[+] Parameter {parm} seems vulnerable to SQL injection with value: {val}'");
+                    Console.WriteLine($"[*] Testing Parameter: {parm}");
+                    foreach (string sqliPayload in sqliPayloads)
+                    {
+                        string val = WebUtility.UrlEncode(parm.Split('=')[1]);
+                        string modifiedRequest = string.Join("&", parms.Select(p => p.Replace("=" + parm.Split('=')[1], "=" + val + sqliPayload)));
+                        HttpResponseMessage response = await httpClient.PostAsync($"http://{host}{targetDirectory}", new StringContent(modifiedRequest));
+                        string responseBody = await response.Content.ReadAsStringAsync();
+                        if (responseBody.Contains("error in your SQL syntax"))
+                        {
+                            Console.WriteLine($"[+] Parameter {parm} seems vulnerable to SQL injection with value: {val}{sqliPayload}");
+                            break;  // Break out of the loop if SQL injection is found
+                        }
+                    }
                 }
             }
         }
@@ -94,27 +105,47 @@
             string[] parms = url.Remove(0, url.IndexOf("?")+1).Split("&");
             foreach (string param in parms)
             {
-                string xssUrl = url.Replace(param, param+"<xss>"); //Simple XSS - Run through all XSS combinations on all params
-                string sqlUrl = url.Replace(param, param+"'");  // Simple SQLi - Run through all SQLi Combinations on all params
+                Console.WriteLine($"[*] Testing Parameter {param}");
+                // Read XSS payloads from file
+                string xssFilePath = "payloads/XSS/xssList.txt";
+                string[] xssPayloads = File.ReadAllLines(xssFilePath);
 
-                // HTTP Request XSS
-                HttpClient clientXSS = new HttpClient();
-                HttpResponseMessage respXSS = await clientXSS.GetAsync(xssUrl);
-                string xssResp = await respXSS.Content.ReadAsStringAsync();
+                // Read SQLi payloads from file
+                string sqliFilePath = "payloads/SQLi/sqliList_INSERT.txt";
+                string[] sqliPayloads = File.ReadAllLines(sqliFilePath);
 
-
-                // HTTP Request SQLi
-                HttpClient clientSQL = new HttpClient();
-                HttpResponseMessage respSQL = await clientSQL.GetAsync(sqlUrl);
-                string sqlResp = await respSQL.Content.ReadAsStringAsync();
-
-                if(xssResp.Contains("<xss>"))
+                foreach (string xssPayload in xssPayloads)
                 {
-                    Console.WriteLine($"[+] Possible XSS point found in parameter: {param}");
+                    string xssUrl = url.Replace(param, param + xssPayload);
+
+                    // HTTP Request XSS
+                    HttpClient clientXSS = new HttpClient();
+                    HttpResponseMessage respXSS = await clientXSS.GetAsync(xssUrl);
+                    string xssResp = await respXSS.Content.ReadAsStringAsync();
+
+                    if (xssResp.Contains(xssPayload))
+                    {
+                        Console.WriteLine($"[+] Possible XSS point found in parameter: {param}");
+                        Console.WriteLine("[+] Wont try Anymore XSS Payloads");
+                        break;
+                    }
                 }
-                if(sqlResp.Contains("error in your SQL syntax"))
+
+                foreach (string sqliPayload in sqliPayloads)
                 {
-                    Console.WriteLine($"[+] SQL Injection found in parameter: {param}");
+                    string sqlUrl = url.Replace(param, param + sqliPayload);
+
+                    // HTTP Request SQLi
+                    HttpClient clientSQL = new HttpClient();
+                    HttpResponseMessage respSQL = await clientSQL.GetAsync(sqlUrl);
+                    string sqlResp = await respSQL.Content.ReadAsStringAsync();
+
+                    if (sqlResp.Contains("error in your SQL syntax"))
+                    {
+                        Console.WriteLine($"[+] SQL Injection found in parameter: {param}");
+                        Console.WriteLine("[+] Wont try Anymore SQLi Payloads");
+                        break;
+                    }
                 }
             }
         }
